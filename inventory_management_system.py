@@ -7,7 +7,7 @@ def display_menu():
     print("1. Add Product")
     print("2. View Inventory")
     print("3. Search Product")
-    print("4. Return Product")
+    print("4. Delete Product")
     print("5. Save information")
     print("6. Exit")
 
@@ -54,7 +54,7 @@ def view_inventory():
         print("\nInventory is empty.")
 
 def search_product():
-    search =input("please enter the product code: ").strip()
+    search = input("please enter the product code: ").strip()
     found = False
     for product in inventory:
         if product["code"] == search:
@@ -71,6 +71,17 @@ def search_product():
             break
     if not found:
         print("Product not found.")
+def delete_product():
+    delete = input("please enter the product code: ").strip()
+    found = False
+    for product in inventory:
+        if product["code"] == delete:
+            found = True
+            inventory.remove(product)
+            print("Product deleted successfully.")
+            break
+    if not found:
+        print("Product not found.")
 
 def main():
     while True:
@@ -82,6 +93,8 @@ def main():
             view_inventory()
         elif user_choice == "3":
             search_product()
+        elif user_choice == "4":
+            delete_product()
         elif user_choice == "6":
             print("Thank you for using Inventory Management System.")
             break
