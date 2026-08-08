@@ -87,7 +87,10 @@ def delete_product():
         print("Product not found.")
 
 def save_inventory():
-    pass
+    with open("inventory.json", "w") as file:
+        json.dump(inventory, file, indent=4)
+
+    print("Inventory saved successfully.")
 
 def main():
     while True:
