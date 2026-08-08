@@ -1,3 +1,6 @@
+
+import json
+
 inventory = []
 
 def display_menu():
@@ -83,6 +86,9 @@ def delete_product():
     if not found:
         print("Product not found.")
 
+def save_inventory():
+    pass
+
 def main():
     while True:
         display_menu()
@@ -95,6 +101,8 @@ def main():
             search_product()
         elif user_choice == "4":
             delete_product()
+        elif user_choice == "5":
+            save_inventory()
         elif user_choice == "6":
             print("Thank you for using Inventory Management System.")
             break
