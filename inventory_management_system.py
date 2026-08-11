@@ -92,6 +92,12 @@ def save_inventory():
 
     print("Inventory saved successfully.")
 
+def load_inventory():
+    global inventory
+
+    with open("inventory.json", "r") as file:
+        inventory = json.load(file)
+
 def main():
     while True:
         display_menu()
@@ -113,4 +119,5 @@ def main():
             print("Feature coming soon...")
 
 
+load_inventory()
 main()
