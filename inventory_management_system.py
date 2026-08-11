@@ -95,8 +95,12 @@ def save_inventory():
 def load_inventory():
     global inventory
 
-    with open("inventory.json", "r") as file:
-        inventory = json.load(file)
+    try:
+        with open("inventory.json", "r") as file:
+            inventory = json.load(file)
+
+    except FileNotFoundError:
+        inventory = []
 
 def main():
     while True:
