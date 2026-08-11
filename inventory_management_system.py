@@ -11,8 +11,9 @@ def display_menu():
     print("2. View Inventory")
     print("3. Search Product")
     print("4. Delete Product")
-    print("5. Save information")
-    print("6. Exit")
+    print("5. Update product")
+    print("6. Save information")
+    print("7. Exit")
 
 
 def get_user_choice():
@@ -117,6 +118,52 @@ def delete_product():
     if not found:
         print("Product not found.")
 
+def update_product():
+    code = input("Please enter the product code to update: ").strip()
+
+    for product in inventory:
+        if product["code"] == code:
+
+            product["name"] = input("Please enter the new product name: ").strip()
+            product["category"] = input("Please enter the new category: ").strip()
+            product["weight"] = input("Please enter the new weight: ").strip()
+            product["material"] = input("Please enter the new material: ").strip()
+            product["origin"] = input("Please enter the new origin: ").strip()
+
+            while True:
+                try:
+                    quantity = int(input("Please enter the new quantity: "))
+
+                    if quantity < 0:
+                        print("Quantity cannot be negative.")
+                        continue
+
+                    product["quantity"] = quantity
+                    break
+
+                except ValueError:
+                    print("Please enter a valid whole number.")
+
+            while True:
+                try:
+                    price = float(input("Please enter the new price: "))
+
+                    if price < 0:
+                        print("Price cannot be negative.")
+                        continue
+
+                    product["price"] = price
+                    break
+
+                except ValueError:
+                    print("Please enter a valid price.")
+
+            print("Product updated successfully.")
+            return
+
+    print("Product not found.")
+
+
 
 def save_inventory():
     with open("inventory.json", "w") as file:
@@ -153,8 +200,10 @@ def main():
         elif user_choice == "4":
             delete_product()
         elif user_choice == "5":
-            save_inventory()
+            update_product()
         elif user_choice == "6":
+            save_inventory()
+        elif user_choice == "7":
             print("Thank you for using Inventory Management System.")
             break
         else:
