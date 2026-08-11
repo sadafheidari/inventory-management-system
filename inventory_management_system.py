@@ -28,10 +28,32 @@ def add_product():
     name =input(" please enter your product name: ").strip()
     category =input("please enter the product category: " ).strip()
     weight =input("please enter the product weight: ").strip()
-    quantity =int(input("please enter the product available quantity: "))
+    while True:
+        try:
+            quantity = int(input("Please enter the product available quantity: "))
+
+            if quantity < 0:
+                print("Quantity cannot be negative.")
+                continue
+
+            break
+
+        except ValueError:
+            print("Please enter a valid whole number.")
     material =input("please enter the product material: ").strip()
     origin =input("please enter the product origin: ").strip()
-    price =float(input("please enter the product price: "))
+    while True:
+        try:
+            price = float(input("Please enter the product price: "))
+
+            if price < 0:
+                print("Price cannot be negative.")
+                continue
+
+            break
+
+        except ValueError:
+            print("Please enter a valid price.")
 
     product= {"name":name,
               "code":code,
