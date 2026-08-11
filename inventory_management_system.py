@@ -12,8 +12,9 @@ def display_menu():
     print("3. Search Product")
     print("4. Delete Product")
     print("5. Update product")
-    print("6. Save information")
-    print("7. Exit")
+    print("6. Inventory Statistics")
+    print("7. Save information")
+    print("8. Exit")
 
 
 def get_user_choice():
@@ -186,11 +187,25 @@ def load_inventory():
         inventory = []
         print("Inventory file is invalid. Starting with an empty inventory.")
 
+def inventory_statistics():
+    total_products = len(inventory)
+    total_quantity = 0
+    total_value = 0
+
+    for product in inventory:
+        total_quantity += product["quantity"]
+        total_value += product["price"] * product["quantity"]
+
+    print("-" * 40)
+    print(f"Total Product Types: {total_products}")
+    print(f"Total Quantity: {total_quantity}")
+    print(f"Total Inventory Value: ${total_value:.2f}")
         
 def main():
     while True:
         display_menu()
         user_choice = get_user_choice()
+
         if user_choice == "1":
             add_product()
         elif user_choice == "2":
@@ -202,13 +217,14 @@ def main():
         elif user_choice == "5":
             update_product()
         elif user_choice == "6":
-            save_inventory()
+            inventory_statistics()
         elif user_choice == "7":
+            save_inventory()
+        elif user_choice == "8":
             print("Thank you for using Inventory Management System.")
             break
         else:
-            print("Feature coming soon...")
-
+            print("Please select a valid option.")
 
 load_inventory()
 main()
