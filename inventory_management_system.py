@@ -19,8 +19,13 @@ def get_user_choice():
     return input("Please select an option from the menu: ").strip()
 
 def add_product():
+    code = input("please enter the product code reference: ").strip()
+    for product in inventory:
+        if product["code"] == code:
+            print("A product with this code already exists.")
+            return
+
     name =input(" please enter your product name: ").strip()
-    code =input("please enter the product code reference: ").strip()
     category =input("please enter the product category: " ).strip()
     weight =input("please enter the product weight: ").strip()
     quantity =int(input("please enter the product available quantity: "))
@@ -40,6 +45,7 @@ def add_product():
     inventory.append(product)
     print("\nProduct added successfully.")
 
+
 def view_inventory():
     if inventory :
         print("\nInventory:")
@@ -55,6 +61,7 @@ def view_inventory():
 
     else:
         print("\nInventory is empty.")
+
 
 def search_product():
     search = input("please enter the product code: ").strip()
@@ -74,6 +81,8 @@ def search_product():
             break
     if not found:
         print("Product not found.")
+
+
 def delete_product():
     delete = input("please enter the product code: ").strip()
     found = False
@@ -86,11 +95,13 @@ def delete_product():
     if not found:
         print("Product not found.")
 
+
 def save_inventory():
     with open("inventory.json", "w") as file:
         json.dump(inventory, file, indent=4)
 
     print("Inventory saved successfully.")
+
 
 def load_inventory():
     global inventory
