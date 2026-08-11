@@ -102,6 +102,11 @@ def load_inventory():
     except FileNotFoundError:
         inventory = []
 
+    except json.JSONDecodeError:
+        inventory = []
+        print("Inventory file is invalid. Starting with an empty inventory.")
+
+        
 def main():
     while True:
         display_menu()
